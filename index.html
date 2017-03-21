@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/21/chapter4/chapter4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/chapter4/chapter4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Duduscript">
@@ -292,7 +292,7 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/21/chapter4/chapter4/" itemprop="url">
+                <a class="post-title-link" href="/2017/03/19/chapter4/chapter4/" itemprop="url">
                   《Three easy pieces》第四章
                 </a>
               
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T18:46:49+08:00">
-                2017-03-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T00:00:00+08:00">
+                2017-03-19
               </time>
             
 
@@ -346,83 +346,14 @@
 
       
         
-          
-            <h1 id="第四章-虚拟化-进程"><a href="#第四章-虚拟化-进程" class="headerlink" title="第四章 虚拟化:进程"></a>第四章 虚拟化:进程</h1><p>这一章，我们讨论操作系统提供给用户的最基本的抽象：进程。进程有一个简单但不是很正式的定义：一个运行中的程序[V+65,BH70]。程序本身是没有生命的：它只是磁盘上等待被人调用的数据，即一堆二进制指令（或者数据）。当操作系统调用它们，让它们运行，将程序变为有用的东西。</p>
-<p>事实上，人们并不满足一次只能运行一个程序。比如，我们可以在笔记本上浏览网页的同时，也可以收发邮件，玩游戏，或者播放音乐等。通常一个普通的系统可以让人感觉像同时在运行几十甚至上几百的程序，这样使得系统用起来更简单，因为用户不需要去关心CPU够不够用。</p>
-<p><strong>问题的核心</strong></p>
-<blockquote>
-<p>怎样提供一种有很多CPU的假象？<br>在只有几个CPU的情况下，操作系统怎样让用户感觉有很多CPU?</p>
-</blockquote>
-<p>操作系统通过虚拟化CPU造成这种假象。通过运行一个进程，然后停止它，运行另一个进程，反复这样进行。操作系统这样就让用户感觉有很多CPU,虽然实际上只有一个（或者几个）。这个基本的技术叫做时间共享(time sharing)CPU，让用户可以运行任意多的进程；由于CPU被共享，所以潜在的成本是性能。</p>
-<p>为了实现CPU的虚拟化并且很好地实现它，操作系统将需要一些底层设备以及一些高级策略的支持。我们称之为底层设备叫机制;机制是实现所需功能的低级方法或协议。例如，我们将在以后学习如何实现上下文转换，使操作系统能够停止一个进程并在给定的CPU上开始运行另一个;这种时间共享机制已被所有现代操作系统采用。</p>
-<blockquote>
-<p><strong>提示：使用时间共享（和空间共享）</strong><br>时间共享是操作系统使用的共享资源的最基本的技术之一。通过允许一个实体短暂使用资源，然后允许另一个实体一段时间，持续这样分享。（例如，CPU或网络链路）可以由许多实体共享。和时间共享的对应是空间共享，基于空间共享资源可以分给很多实体使用。例如，磁盘空间就是一个空间共享资源，一旦一个块被分配给一个文件，它不可能被分配到另一个文件，直到用户删除它。</p>
-</blockquote>
-<p>除了这些机制之外，还存在一些策略。策略是一些算法，在操作系统内的一种决策。例如，给定一些可能的程序在CPU上运行，哪个程序应该在OS上运行？一个调度的策略在OS中将做出这个决定，可能使用历史信息（比如在最后一分钟哪个程序运行得更多）、工作负载知识（比如运行什么类型的程序）和性能度量（比如是针对交互性能的系统优化，或吞吐量？）做出决定。</p>
-<h2 id="4-1-抽象化：进程"><a href="#4-1-抽象化：进程" class="headerlink" title="4.1 抽象化：进程"></a>4.1 抽象化：进程</h2><p>操作系统为一个运行的程序提供的抽象就是进程。如上所述，一个进程只是一个运行的程序;在任何时刻，我们可以将一个进程归纳为系统在此刻执行时访问和影响的各个部分的一个清单。</p>
-<p>要理解什么是一个进程，我们因此必须理解它的机器状态：程序在运行时可以读取什么或更新什么。在任何给定的时间，对于这个程序的执行，机器的哪些部分对执行是重要的？</p>
-<p>很明显，内存是机器状态的一个组成部分。指令在内存中;进程的数据读和写也在内存中。因此进程可以寻址的内存（称为其地址空间）是进程的一部分。</p>
-<p>此外，进程的机器状态的一部分是寄存器;很多指令显式地读取或更新寄存器，所以他们明显是进程的重要部分。</p>
-<p>注意，有一些特别的特殊寄存器标记着机器的状态。例如，程序计数器（PC）（有时称为指令指针或IP）告诉我们当前正在执行程序的哪条指令;相似的还有一个堆栈指针并关联帧指针用于管理函数参数、局部变量和返回地址。</p>
-<p>最后，程序经常访问持久性存储设备。这样的I / O信息可能包括进程当前打开的文件的列表。</p>
-<h2 id="4-2-进程的API"><a href="#4-2-进程的API" class="headerlink" title="4.2 进程的API"></a>4.2 进程的API</h2><p>我们将在下一章讨论真正地进程API，这里我们先给出哪些是任意操作系统接口必须提供的，这些API是任何现代系统都必须以某种形式提供的。</p>
-<ul>
-<li>Create：一个操作系统必须提供一些方法来创建新进程。当你在shell上提交一个命令，或者双击一个应用的图标，都会触发操作系统创建一个新的进程来运行你所指的程序。</li>
-<li>Destroy：既然有创建，当然操作系统也必须提供一个强制销毁进程的接口。当然，很多进程运行完以后会自己销毁；但如果它们不这么做，或者用户希望主动销毁进程，一个终止进程的接口就非常有用了。</li>
-<li>Wait：有时，等待一个进程运行完毕是很有用的，所以这种等待的接口需要提供。</li>
-<li>Miscellaneous Control：除了杀死或等待进程，有时也有可能的其他控制。例如，大多数操作系统提供某种方法来挂起进程（停止运行一段时间），然后恢复它（继续它运行）。</li>
-<li>Status：通常有接口来获取一些关于进程的状态信息，例如它运行多长时间，或什么处于什么状态。</li>
-</ul>
-<p><img src="/2017/03/21/chapter4/chapter4/images/figure4-1.png" alt="Local Image"></p>
-<h2 id="4-3-进程创建：更多的细节"><a href="#4-3-进程创建：更多的细节" class="headerlink" title="4.3 进程创建：更多的细节"></a>4.3 进程创建：更多的细节</h2><p>我们应该揭开的一个谜团是程序是如何转变成进程的。具体来说，操作系统如何使程序运行？进程是怎样创建的？</p>
-<p>运行一个程序时，操作系统必须做的第一件事是加载它的代码和所有静态数据（例如初始化的变量）到内存中的进程的存储空间。程序最初以某种可执行格式驻留在磁盘上（或者SSD）;</p>
-<p>因此，将程序和静态数据加载到内存中的过程需要操作系统从磁盘读取这些字节并将它们放在内存中某处（如图4.1所示）。</p>
-<p>在早期（或简单）操作系统中，加载过程是简单粗暴的，也就是在运行程序之前一次全部完成;现代操作系统的这个过程要更懒一些，即通过仅加载在程序执行期间需要的代码或数据片段。要真正了解如何延迟加载的代码和数据块的工作，你将必须了解更多分页和交换的机制，这些是我们讨论内存的虚拟化中的一些主题。现在，只要记住在运行任何程序之前，操<br>作系统必须做一些工作来把程序从磁盘拿到内存。</p>
-<p>当代码和静态数据加载到内存，操作系统在运行进程之前需要做几个其他事情。必须分配一些内存给程序的运行时堆栈（或只是堆栈）。也许你已经知道的，C程序使用堆栈存储局部变量，函数参数和返回地址;操作系统分配内存并把它给进程。操作系统也可能在栈初始化时加入参数;具体来说，它会填写main()函数的参数，即argc和argv数组。</p>
-<p>操作系统还会分配内存给程序的堆。在C程序，堆用于程序通过调用malloc()显式动态分配数据;并通过调用free()显式释放它来请求这样的空间。对于其他数据结构比如链表，散列表，树等也需要堆。堆占用的内存一开始并不大;随着程序运行，通过malloc（）库API请求更多的内存，操作系统会分配更多的内存来满足进程。</p>
-<p>操作系统也将做一些其他初始化任务，特别是与输入/输出（I / O）相关。例如，在UNIX系统中，每个进程默认有三个打开的文件描述符，用于标准输入，输出和错误;这些描述符使程序很容易地从终端读取输入以及打印输出到屏幕。在本书的第三部分中关于持久性，我们将进一步了解I / O，文件描述符等等。</p>
-<p>通过将代码和静态数据加载到内存中，初始化堆栈，以及做完与I / O设置相关的一些工作，OS为程序的执行做好了准备。然后做它的最后一个任务：启动程序在入口点运行，即main（）。通过跳转到main（）函数起始地址（通过一个专门的机制，我们将在下一章讨论），OS将CPU的控制转移到新创建的进程，因此程序开始执行。</p>
-<h2 id="4-4-进程状态"><a href="#4-4-进程状态" class="headerlink" title="4.4 进程状态"></a>4.4 进程状态</h2><p>现在我们已经知道进程是什么（虽然我们会的继续改善这个概念），以及（大概）如何创建它，让我们谈谈关于进程在不同时刻的不同状态。关于一个进程可以有不同状态的概念出现在早期的计算机系统中[DV66，V + 65]。在简化视图中，过程可以处于三种状态之一：</p>
-<ul>
-<li>运行：在运行状态下，处理器上正在运行进程。这意味着它正在执行指令。</li>
-<li>就绪：在就绪状态下，进程已准备好运行，但由于某些原因，操作系统目前没有运行这个进程。</li>
-<li>阻塞：在阻塞状态下，进程已执行某种类型的操作，使其不准备运行，直到某些其他事件发生。常见示例：进程启动I I/O时请求到磁盘，它变得被阻塞，从而一些其他进程可以使用处理器。</li>
-</ul>
-<p><img src="/2017/03/21/chapter4/chapter4/images/figure4-2.png" alt="Local Image"></p>
-<p>如果我们将这些状态由图片来描述，如图4.2中。从图中可以看出，一个进程可以根据OS的判决在就绪状态和运行状态之间移动。从就绪状态到运行状态意味着OS已经安排进程运行;从运行状态到就绪状态意味着过程已经运行完毕。一旦进程被阻塞（例如，通过启动I / O操作），OS将阻塞其直到某些事件发生（例如，I / O完成）;事件发生以后，处理再次移动到就绪状态（并且如果OS如此决定，则可能立即再次运行）。</p>
-<p>让我们来看一个关于两个进程如何在这些状态之间转换的例子。首先，想象两个进程运行，每个进程只使用CPU（他们没有I / O）。在这种情况下，每个进程的运行过程可能如下表所示（图4.3）。</p>
-<p><img src="/2017/03/21/chapter4/chapter4/images/figure4-3.png" alt="Local Image"></p>
-<p>在下一个示例中，第一个进程在运行后某个时间发出一个I / O请求。此时，进程被阻塞，让给另一个进程运行。图4.4显示了此示例的整个过程。</p>
-<p>更具体地，Process0启动I / O并变为阻塞，直到I/O事件完毕;例如，当从磁盘读取或等待来自网络的分组时，进程阻塞。操作系统知道Process0不使用CPU，并开始运行Process1。而 Process1正在运行时，I / O完成，将Process0移回到就绪状态。 最后，Process1完成，Process0运行，最后完成。 </p>
-<p><img src="/2017/03/21/chapter4/chapter4/images/figure4-4.png" alt="Local Image"></p>
-<p>值得注意的是，即使是这么简单的例子，操作系统必须做许多决策。首先，当Process0发出I / O请求时，系统不得不决定运行Process1;这样做通过保持提高了CPU的资源利用率。其次，当I / O完成时系统决定不切换回 Process0;不清楚这是不是一个好的决定。你怎么看？这些类型的决定是由 OS调度器，这是我们将在未来讨论几个章节的主题。</p>
-<h2 id="4-5-数据结构"><a href="#4-5-数据结构" class="headerlink" title="4.5 数据结构"></a>4.5 数据结构</h2><p>S是一个程序，和任何程序一样，它有一些关键的数据结构来记录各种相关的信息。记录每个进程的状态。例如，OS可能会记录进程的状态，以及所有就绪状态的进程的列表，以及一些其他信息来跟踪当前正在运行的进程。操作系统还必须记录阻塞的进程;当I / O事件完成时，OS应该确保唤醒I/O事件对应的进程，状态变为阻塞而等待下一次运行。</p>
-<p><img src="/2017/03/21/chapter4/chapter4/images/figure4-5.png" alt="Local Image"></p>
-<p>图4.5显示了xv6操作系统内核[CK + 08]对每个进程需要跟踪的信息类型。“真实”操作系统中存在类似的过程结构，如Linux，Mac OS X或Windows;从中可以看到他们是多么复杂。</p>
-<p>从图中，你可以看到OS记录进程的几个重要信息。当一个进程停止运行，寄存器上下文，也就是寄存器的内存将被保存。当进程停止时，其寄存器将被保存到内存中;通过恢复这些寄存器（即将它们的值放回实际物理寄存器中）操作系统可以恢复运行过程。我们将在将来的章节中更多地了解这种上下文切换的技术。</p>
-<h2 id="4-6-总结"><a href="#4-6-总结" class="headerlink" title="4.6 总结"></a>4.6 总结</h2><p>我们已经介绍了OS的最基本的抽象：进程。它被简单地视为一个正在运行的程序。考虑到这一概念性观点，我们现在将继续进行讨论它的细节：实现进程所需的底层机制，以及更智能地调度它们所需要的高级策略。通过结合机制和策略，我们将建立我们对操作系统如何虚拟化CPU的理解。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[BH70] “The Nucleus of a Multiprogramming System”<br>Per Brinch Hansen<br>Communications of the ACM, Volume 13, Number 4, April 1970</p>
-<blockquote>
-<p>This paper introduces one of the first microkernels in operating systems history, called Nucleus. The idea of smaller, more minimal systems is a theme that rears its head repeatedly in OS history; it all began with Brinch Hansen’s work described herein.</p>
-</blockquote>
-<p>[CK+08] “The xv6 Operating System”<br>Russ Cox, Frans Kaashoek, Robert Morris, Nickolai Zeldovich<br>From: <a href="http://pdos.csail.mit.edu/6.828/2008/index.html" target="_blank" rel="external">http://pdos.csail.mit.edu/6.828/2008/index.html</a></p>
-<blockquote>
-<p>The coolest real and little OS in the world. Download and play with it to learn more about the details of how operating systems actually work.</p>
-</blockquote>
-<p>[DV66] “Programming Semantics for Multiprogrammed Computations”<br>Jack B. Dennis and Earl C. Van Horn<br>Communications of the ACM, Volume 9, Number 3, March 1966</p>
-<blockquote>
-<p>This paper defined many of the early terms and concepts around building multiprogrammed systems.</p>
-</blockquote>
-<p>[L+75] “Policy/mechanism separation in Hydra”<br>R. Levin, E. Cohen, W. Corwin, F. Pollack, W. Wulf<br>SOSP 1975</p>
-<blockquote>
-<p>An early paper about how to structure operating systems in a research OS known as Hydra. While Hydra never became a mainstream OS, some of its ideas influenced OS designers.</p>
-</blockquote>
-<p>[V+65] “Structure of the Multics Supervisor”<br>V.A. Vyssotsky, F. J. Corbato, R. M. Graham<br>Fall Joint Computer Conference, 1965</p>
-<blockquote>
-<p>An early paper on Multics, which described many of the basic ideas and terms that we find in modern systems. Some of the vision behind computing as a utility are finally being realized in modern cloud systems.</p>
-</blockquote>
-
-          
+          <h1 id="第四章-虚拟化-进程"><a href="#第四章-虚拟化-进程" class="headerlink" title="第四章 虚拟化:进程"></a>第四章 虚拟化:进程</h1><p>这一章，我们讨论操作系统提供给用户的最基本的抽象：进程。进程有一个简单但不是很正式的定义：一个运行中的程序[V+65,BH70]。程序本身是没有生命的：它只是磁盘上等待被人调用的数据，即一堆二进制指令（或者数据）。当操作系统调用它们，让它们运行，将程序变为有用的东西。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/19/chapter4/chapter4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
