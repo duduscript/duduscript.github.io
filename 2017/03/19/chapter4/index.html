@@ -90,19 +90,19 @@
 <meta name="description" content="第四章 虚拟化:进程这一章，我们讨论操作系统提供给用户的最基本的抽象：进程。进程有一个简单但不是很正式的定义：一个运行中的程序[V+65,BH70]。程序本身是没有生命的：它只是磁盘上等待被人调用的数据，即一堆二进制指令（或者数据）。当操作系统调用它们，让它们运行，将程序变为有用的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Three easy pieces》第四章">
-<meta property="og:url" content="http://yoursite.com/2017/03/19/chapter4/chapter4/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/03/19/chapter4/index.html">
 <meta property="og:site_name" content="Duduscript">
 <meta property="og:description" content="第四章 虚拟化:进程这一章，我们讨论操作系统提供给用户的最基本的抽象：进程。进程有一个简单但不是很正式的定义：一个运行中的程序[V+65,BH70]。程序本身是没有生命的：它只是磁盘上等待被人调用的数据，即一堆二进制指令（或者数据）。当操作系统调用它们，让它们运行，将程序变为有用的东西。">
-<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/chapter4/images/figure4-1.png">
-<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/chapter4/images/figure4-2.png">
-<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/chapter4/images/figure4-3.png">
-<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/chapter4/images/figure4-4.png">
-<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/chapter4/images/figure4-5.png">
-<meta property="og:updated_time" content="2017-03-21T12:15:51.223Z">
+<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/images/figure4-1.png">
+<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/images/figure4-2.png">
+<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/images/figure4-3.png">
+<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/images/figure4-4.png">
+<meta property="og:image" content="http://yoursite.com/2017/03/19/chapter4/images/figure4-5.png">
+<meta property="og:updated_time" content="2017-03-21T12:22:10.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Three easy pieces》第四章">
 <meta name="twitter:description" content="第四章 虚拟化:进程这一章，我们讨论操作系统提供给用户的最基本的抽象：进程。进程有一个简单但不是很正式的定义：一个运行中的程序[V+65,BH70]。程序本身是没有生命的：它只是磁盘上等待被人调用的数据，即一堆二进制指令（或者数据）。当操作系统调用它们，让它们运行，将程序变为有用的东西。">
-<meta name="twitter:image" content="http://yoursite.com/2017/03/19/chapter4/chapter4/images/figure4-1.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/03/19/chapter4/images/figure4-1.png">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/19/chapter4/chapter4/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/19/chapter4/"/>
 
 
 
@@ -275,7 +275,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/chapter4/chapter4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/chapter4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Duduscript">
@@ -374,7 +374,7 @@
 <li>Miscellaneous Control：除了杀死或等待进程，有时也有可能的其他控制。例如，大多数操作系统提供某种方法来挂起进程（停止运行一段时间），然后恢复它（继续它运行）。</li>
 <li>Status：通常有接口来获取一些关于进程的状态信息，例如它运行多长时间，或什么处于什么状态。</li>
 </ul>
-<p><img src="/2017/03/19/chapter4/chapter4/images/figure4-1.png" alt="Local Image"></p>
+<p><img src="/2017/03/19/chapter4/images/figure4-1.png" alt="Local Image"></p>
 <h2 id="4-3-进程创建：更多的细节"><a href="#4-3-进程创建：更多的细节" class="headerlink" title="4.3 进程创建：更多的细节"></a>4.3 进程创建：更多的细节</h2><p>我们应该揭开的一个谜团是程序是如何转变成进程的。具体来说，操作系统如何使程序运行？进程是怎样创建的？</p>
 <p>运行一个程序时，操作系统必须做的第一件事是加载它的代码和所有静态数据（例如初始化的变量）到内存中的进程的存储空间。程序最初以某种可执行格式驻留在磁盘上（或者SSD）;</p>
 <p>因此，将程序和静态数据加载到内存中的过程需要操作系统从磁盘读取这些字节并将它们放在内存中某处（如图4.1所示）。</p>
@@ -389,16 +389,16 @@
 <li>就绪：在就绪状态下，进程已准备好运行，但由于某些原因，操作系统目前没有运行这个进程。</li>
 <li>阻塞：在阻塞状态下，进程已执行某种类型的操作，使其不准备运行，直到某些其他事件发生。常见示例：进程启动I I/O时请求到磁盘，它变得被阻塞，从而一些其他进程可以使用处理器。</li>
 </ul>
-<p><img src="/2017/03/19/chapter4/chapter4/images/figure4-2.png" alt="Local Image"></p>
+<p><img src="/2017/03/19/chapter4/images/figure4-2.png" alt="Local Image"></p>
 <p>如果我们将这些状态由图片来描述，如图4.2中。从图中可以看出，一个进程可以根据OS的判决在就绪状态和运行状态之间移动。从就绪状态到运行状态意味着OS已经安排进程运行;从运行状态到就绪状态意味着过程已经运行完毕。一旦进程被阻塞（例如，通过启动I / O操作），OS将阻塞其直到某些事件发生（例如，I / O完成）;事件发生以后，处理再次移动到就绪状态（并且如果OS如此决定，则可能立即再次运行）。</p>
 <p>让我们来看一个关于两个进程如何在这些状态之间转换的例子。首先，想象两个进程运行，每个进程只使用CPU（他们没有I / O）。在这种情况下，每个进程的运行过程可能如下表所示（图4.3）。</p>
-<p><img src="/2017/03/19/chapter4/chapter4/images/figure4-3.png" alt="Local Image"></p>
+<p><img src="/2017/03/19/chapter4/images/figure4-3.png" alt="Local Image"></p>
 <p>在下一个示例中，第一个进程在运行后某个时间发出一个I / O请求。此时，进程被阻塞，让给另一个进程运行。图4.4显示了此示例的整个过程。</p>
 <p>更具体地，Process0启动I / O并变为阻塞，直到I/O事件完毕;例如，当从磁盘读取或等待来自网络的分组时，进程阻塞。操作系统知道Process0不使用CPU，并开始运行Process1。而 Process1正在运行时，I / O完成，将Process0移回到就绪状态。 最后，Process1完成，Process0运行，最后完成。 </p>
-<p><img src="/2017/03/19/chapter4/chapter4/images/figure4-4.png" alt="Local Image"></p>
+<p><img src="/2017/03/19/chapter4/images/figure4-4.png" alt="Local Image"></p>
 <p>值得注意的是，即使是这么简单的例子，操作系统必须做许多决策。首先，当Process0发出I / O请求时，系统不得不决定运行Process1;这样做通过保持提高了CPU的资源利用率。其次，当I / O完成时系统决定不切换回 Process0;不清楚这是不是一个好的决定。你怎么看？这些类型的决定是由 OS调度器，这是我们将在未来讨论几个章节的主题。</p>
 <h2 id="4-5-数据结构"><a href="#4-5-数据结构" class="headerlink" title="4.5 数据结构"></a>4.5 数据结构</h2><p>S是一个程序，和任何程序一样，它有一些关键的数据结构来记录各种相关的信息。记录每个进程的状态。例如，OS可能会记录进程的状态，以及所有就绪状态的进程的列表，以及一些其他信息来跟踪当前正在运行的进程。操作系统还必须记录阻塞的进程;当I / O事件完成时，OS应该确保唤醒I/O事件对应的进程，状态变为阻塞而等待下一次运行。</p>
-<p><img src="/2017/03/19/chapter4/chapter4/images/figure4-5.png" alt="Local Image"></p>
+<p><img src="/2017/03/19/chapter4/images/figure4-5.png" alt="Local Image"></p>
 <p>图4.5显示了xv6操作系统内核[CK + 08]对每个进程需要跟踪的信息类型。“真实”操作系统中存在类似的过程结构，如Linux，Mac OS X或Windows;从中可以看到他们是多么复杂。</p>
 <p>从图中，你可以看到OS记录进程的几个重要信息。当一个进程停止运行，寄存器上下文，也就是寄存器的内存将被保存。当进程停止时，其寄存器将被保存到内存中;通过恢复这些寄存器（即将它们的值放回实际物理寄存器中）操作系统可以恢复运行过程。我们将在将来的章节中更多地了解这种上下文切换的技术。</p>
 <h2 id="4-6-总结"><a href="#4-6-总结" class="headerlink" title="4.6 总结"></a>4.6 总结</h2><p>我们已经介绍了OS的最基本的抽象：进程。它被简单地视为一个正在运行的程序。考虑到这一概念性观点，我们现在将继续进行讨论它的细节：实现进程所需的底层机制，以及更智能地调度它们所需要的高级策略。通过结合机制和策略，我们将建立我们对操作系统如何虚拟化CPU的理解。</p>
