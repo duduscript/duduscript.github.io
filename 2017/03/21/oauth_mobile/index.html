@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="security," />
 
 
 
@@ -87,15 +87,19 @@
 
 
 
-<meta name="description" content="I can eat glass,it doesn&apos;t hurt me.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Duduscript">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="OAuth Demystified for Mobile Application Developers如果对OAuth协议不了解，先看协议的RFC了解一些。
+OAUTH的背景OAuth协议最开始是为网站提供一种安全授权机制，它定义了一套用户授权给第三方应用获取用户在资源提供方上的流程。OAuth协议在工业界广泛使用以后，很多公司将其重新应用于认证。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《OAuth Demystified for Mobile Application Developers》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/21/oauth_mobile/index.html">
 <meta property="og:site_name" content="Duduscript">
-<meta property="og:description" content="I can eat glass,it doesn&apos;t hurt me.">
+<meta property="og:description" content="OAuth Demystified for Mobile Application Developers如果对OAuth协议不了解，先看协议的RFC了解一些。
+OAUTH的背景OAuth协议最开始是为网站提供一种安全授权机制，它定义了一套用户授权给第三方应用获取用户在资源提供方上的流程。OAuth协议在工业界广泛使用以后，很多公司将其重新应用于认证。">
+<meta property="og:updated_time" content="2017-03-21T16:41:59.964Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Duduscript">
-<meta name="twitter:description" content="I can eat glass,it doesn&apos;t hurt me.">
+<meta name="twitter:title" content="《OAuth Demystified for Mobile Application Developers》阅读笔记">
+<meta name="twitter:description" content="OAuth Demystified for Mobile Application Developers如果对OAuth协议不了解，先看协议的RFC了解一些。
+OAUTH的背景OAuth协议最开始是为网站提供一种安全授权机制，它定义了一套用户授权给第三方应用获取用户在资源提供方上的流程。OAuth协议在工业界广泛使用以后，很多公司将其重新应用于认证。">
 
 
 
@@ -123,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/21/oauth_mobile/"/>
 
 
 
 
 
-  <title> Duduscript </title>
+  <title> 《OAuth Demystified for Mobile Application Developers》阅读笔记 | Duduscript </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,9 +261,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -291,10 +293,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/03/21/oauth_mobile/" itemprop="url">
-                  《OAuth Demystified for Mobile Application Developers》阅读笔记
-                </a>
+                《OAuth Demystified for Mobile Application Developers》阅读笔记
               
             
           </h1>
@@ -367,198 +366,91 @@
       
 
       
-        
-          <h1 id="OAuth-Demystified-for-Mobile-Application-Developers"><a href="#OAuth-Demystified-for-Mobile-Application-Developers" class="headerlink" title="OAuth Demystified for Mobile Application Developers"></a>OAuth Demystified for Mobile Application Developers</h1><p>如果对OAuth协议不了解，先看协议的RFC了解一些。</p>
+        <h1 id="OAuth-Demystified-for-Mobile-Application-Developers"><a href="#OAuth-Demystified-for-Mobile-Application-Developers" class="headerlink" title="OAuth Demystified for Mobile Application Developers"></a>OAuth Demystified for Mobile Application Developers</h1><p>如果对OAuth协议不了解，先看协议的RFC了解一些。</p>
 <h2 id="OAUTH的背景"><a href="#OAUTH的背景" class="headerlink" title="OAUTH的背景"></a>OAUTH的背景</h2><p>OAuth协议最开始是为网站提供一种安全授权机制，它定义了一套用户授权给第三方应用获取用户在资源提供方上的流程。OAuth协议在工业界广泛使用以后，很多公司将其重新应用于认证。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/21/oauth_mobile/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<a id="more"></a>
+<p>OAuth1.0是最早的OAuth版本，另一个广泛应用于第三方用户认证的是OpenID，OAuth协议设计的主要为了解决OpenID没有解决的问题—授权，OAuth协议本身并没有要用于认证。</p>
+<h3 id="OAuth1-0和OAuth1-0a"><a href="#OAuth1-0和OAuth1-0a" class="headerlink" title="OAuth1.0和OAuth1.0a"></a>OAuth1.0和OAuth1.0a</h3><p>OAuth1.0协议流程如Figure 1 所示，所有的虚线表示浏览器重定向，实线表示server-to-server API调用。</p>
+<h3 id="OAuth2-0"><a href="#OAuth2-0" class="headerlink" title="OAuth2.0"></a>OAuth2.0</h3><p>OAuth2.0不是对OAuth1.0的修改，而是完全重新设计了一个新的协议。论文主要讲了4个流程中的两个，implicit grant 和authorization code 如图 Figure2a 和 Figure2b所示</p>
+<h4 id="Implicit-grant"><a href="#Implicit-grant" class="headerlink" title="Implicit grant"></a>Implicit grant</h4><p>有两个优点，第一,所有的消息由User Agent来交换(重定向);第二，不需要依赖方提供 shared secure给资源提供方。</p>
+<p>我的看法是，implicit grant流程的好处是显而易见的，就是十分简单，因为不需要第三方应用服务器与资源提供方通信，所以第三方应用使用不再需要额外的服务器代码。这个对于移动平台来说是非常适合的，但这个流程不能用来认证，这个再接下来会描述。</p>
+<h4 id="Authorization-code"><a href="#Authorization-code" class="headerlink" title="Authorization code"></a>Authorization code</h4><p>额外的认证了依赖方，流程细节见RFC</p>
+<h2 id="Our-Study"><a href="#Our-Study" class="headerlink" title="Our Study"></a>Our Study</h2><p>主要是两个方面:</p>
+<ul>
+<li>理解和比较OAuth1.0和2.0，找到用于认证和授权的关键步骤。这些步骤在移动端实现的机制和web端很不一样</li>
+<li>通过对149款受欢迎的移动应用的研究，理解现实中的开发者对协议的解释和实现</li>
+</ul>
+<h2 id="OAuth-Specification-and-Mobile-Platforms"><a href="#OAuth-Specification-and-Mobile-Platforms" class="headerlink" title="OAuth Specification and Mobile Platforms"></a>OAuth Specification and Mobile Platforms</h2><h3 id="Dissecting-the-OAuth-specification"><a href="#Dissecting-the-OAuth-specification" class="headerlink" title="Dissecting the OAuth specification"></a>Dissecting the OAuth specification</h3><p>分析集中在授权与认证，上述的OAuth1.0与OAuth2.0，以及OAuth1.0的流程和OAuth2.0的两张流程.值得注意的是,OAuth协议流程的前提条件是依赖方必须得到一个ID和与资源提供方的shared secure，这个通常是依赖方应用最开始向资源提供方注册的。</p>
+<h4 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h4><p>the Security audience是资源提供方，资源提供方必须确认资源送到了用户授权的地方。</p>
+<h4 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h4><p>很多网站和应用用OAuth来做认证，但实际上标准协议中并没有描述用于认证，认证中的security audience是依赖方。</p>
+<p>总的来说，为了</p>
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/chapter4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Duduscript">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Duduscript">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/19/chapter4/" itemprop="url">
-                  《Three easy pieces》第四章
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T00:00:00+08:00">
-                2017-03-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Three-easy-pieces/" itemprop="url" rel="index">
-                    <span itemprop="name">Three-easy-pieces</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/security/" rel="tag"># security</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          <h1 id="第四章-虚拟化-进程"><a href="#第四章-虚拟化-进程" class="headerlink" title="第四章 虚拟化:进程"></a>第四章 虚拟化:进程</h1><p>这一章，我们讨论操作系统提供给用户的最基本的抽象：进程。进程有一个简单但不是很正式的定义：一个运行中的程序[V+65,BH70]。程序本身是没有生命的：它只是磁盘上等待被人调用的数据，即一堆二进制指令（或者数据）。当操作系统调用它们，让它们运行，将程序变为有用的东西。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/19/chapter4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/19/chapter4/" rel="next" title="《Three easy pieces》第四章">
+                <i class="fa fa-chevron-left"></i> 《Three easy pieces》第四章
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -566,6 +458,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -585,8 +481,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -648,6 +553,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OAuth-Demystified-for-Mobile-Application-Developers"><span class="nav-text">OAuth Demystified for Mobile Application Developers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OAUTH的背景"><span class="nav-text">OAUTH的背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OAuth1-0和OAuth1-0a"><span class="nav-text">OAuth1.0和OAuth1.0a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OAuth2-0"><span class="nav-text">OAuth2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Implicit-grant"><span class="nav-text">Implicit grant</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Authorization-code"><span class="nav-text">Authorization code</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Our-Study"><span class="nav-text">Our Study</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OAuth-Specification-and-Mobile-Platforms"><span class="nav-text">OAuth Specification and Mobile Platforms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dissecting-the-OAuth-specification"><span class="nav-text">Dissecting the OAuth specification</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Authorization"><span class="nav-text">Authorization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Authentication"><span class="nav-text">Authentication</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -753,6 +674,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
