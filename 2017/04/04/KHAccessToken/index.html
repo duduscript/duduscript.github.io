@@ -1,0 +1,876 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="security," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="KHAccessTokenFIDO Technical Glossary
+Definition:A secret value that acts as a guard for authenticator commands. KHAccessTokens are generated and provided by an ASM.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HKAccessToken">
+<meta property="og:url" content="http://yoursite.com/2017/04/04/KHAccessToken/index.html">
+<meta property="og:site_name" content="Duduscript">
+<meta property="og:description" content="KHAccessTokenFIDO Technical Glossary
+Definition:A secret value that acts as a guard for authenticator commands. KHAccessTokens are generated and provided by an ASM.">
+<meta property="og:updated_time" content="2017-04-04T14:40:54.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HKAccessToken">
+<meta name="twitter:description" content="KHAccessTokenFIDO Technical Glossary
+Definition:A secret value that acts as a guard for authenticator commands. KHAccessTokens are generated and provided by an ASM.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/04/KHAccessToken/"/>
+
+
+
+
+
+  <title> HKAccessToken | Duduscript </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Duduscript</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">嘟嘟的精神角落</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/04/KHAccessToken/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Duduscript">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Duduscript">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HKAccessToken
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T00:00:00+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lab/" itemprop="url" rel="index">
+                    <span itemprop="name">lab</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="KHAccessToken"><a href="#KHAccessToken" class="headerlink" title="KHAccessToken"></a>KHAccessToken</h1><p><a href="https://fidoalliance.org/specs/fido-uaf-v1.1-id-20170202/fido-glossary-v1.1-id-20170202.html" target="_blank" rel="external">FIDO Technical Glossary</a></p>
+<p><strong>Definition</strong>:<br>A secret value that acts as a guard for authenticator commands. KHAccessTokens are generated and provided by an ASM.</p>
+<a id="more"></a>
+<p><a href="https://fidoalliance.org/specs/fido-uaf-v1.1-id-20170202/fido-uaf-asm-api-v1.1-id-20170202.html" target="_blank" rel="external">FIDO UAF Authenticator-Specific Module API</a></p>
+<p><strong>Purpose</strong>:<br>An ASM designed specifically for bound authenticators must ensure that FIDO UAF credentials registered with one ASM cannot be accessed by another ASM. This is to prevent an application pretending to be an ASM from exercising legitimate UAF credentials.</p>
+<h2 id="Specification"><a href="#Specification" class="headerlink" title="Specification)"></a><a href="https://fidoalliance.org/specs/fido-uaf-v1.1-id-20170202/fido-uaf-asm-api-v1.1-id-20170202.html" target="_blank" rel="external">Specification</a>)</h2><p>KHAccessToken is an access control mechanism for protecting an authenticator’s FIDO UAF credentials from unauthorized use. It is created by the ASM by mixing various sources of information together. Typically, a KHAccessToken contains the following four data items in it: AppID, PersonaID, ASMToken and CallerID.</p>
+<p><strong>AppID</strong> is provided by the FIDO Server and is contained in every FIDO UAF message.</p>
+<p><strong>PersonaID</strong> is obtained by the ASM from the operational environment. Typically a different PersonaID is assigned to every operating system user account.</p>
+<p><strong>ASMToken</strong> is a randomly generated secret which is maintained and protected by the ASM.</p>
+<blockquote>
+<p>NOTE :<br>In a typical implementation an ASM will randomly generate an ASMToken when it is launched the first time and will maintain this secret until the ASM is uninstalled.</p>
+</blockquote>
+<p><strong>CallerID</strong> is the ID the platform has assigned to the calling FIDO UAF Client (e.g. “bundle ID” for iOS). On different platforms the CallerID can be obtained differently.</p>
+<blockquote>
+<p>NOTE :<br>For example on Android platform ASM can use the hash of the caller’s apk-signing-cert.</p>
+</blockquote>
+<p>The ASM uses the <strong>KHAccessToken</strong> to establish a link between the ASM and the key handle that is created by authenticator on behalf of this ASM.</p>
+<p>The ASM provides the <strong>KHAccessToken</strong> to the authenticator with every command which works with key handles.</p>
+<blockquote>
+<p>NOTE :<br>The following example describes how the ASM constructs and uses KHAccessToken.</p>
+</blockquote>
+<p>During a Register request</p>
+<ul>
+<li>Set KHAccessToken to a secret value only known to the ASM. This value will always be the same for this ASM.</li>
+<li>Append AppID<ul>
+<li>KHAccessToken = AppID</li>
+</ul>
+</li>
+<li>If a bound authenticator, append ASMToken, PersonaID and CallerID<ul>
+<li>KHAccessToken |= ASMToken | PersonaID | CallerID</li>
+</ul>
+</li>
+<li>Hash KHAccessToken<ul>
+<li>Hash KHAccessToken using the authenticator’s hashing algorithm. The reason of using authenticator specific hash function is to make sure of interoperability between ASMs. If interoperability is not required, an ASM can use any other secure hash function it wants.</li>
+<li>KHAccessToken=hash(KHAccessToken)</li>
+<li>Provide KHAccessToken to the authenticator</li>
+<li>The authenticator puts the KHAccessToken into RawKeyHandle (see [UAFAuthnrCommands] for more details)</li>
+</ul>
+</li>
+<li>During other commands which require KHAccessToken as input argument<ul>
+<li>The ASM computes KHAccessToken the same way as during the Register request and provides it to the authenticator along with other arguments.</li>
+<li>The authenticator unwraps the provided key handle(s) and proceeds with the command only if RawKeyHandle.KHAccessToken is equal to the provided KHAccessToken.</li>
+</ul>
+</li>
+</ul>
+<p>Bound authenticators must support a mechanism for binding generated key handles to ASMs. The binding mechanism must have at least the same security characteristics as mechanism for protcting KHAccessToken described above. As a consequence it is recommended to securely derive KHAccessToken from AppID, ASMToken, PersonaID and the CallerID.</p>
+<blockquote>
+<p>NOTE :<br>It is recommended for roaming authenticators that the KHAccessToken contains only the AppID since otherwise users won’t be able to use them on different machines (PersonaID, ASMToken and CallerID are platform specific). If the authenticator vendor decides to do that in order to address a specific use case, however, it is allowed.<br>Including PersonaID in the KHAccessToken is optional for all types of authenticators. However an authenticator designed for multi-user systems will likely have to support it.</p>
+</blockquote>
+<p>If an ASM for roaming authenticators doesn’t use a KHAccessToken which is different for each AppID, the ASM must include the AppID in the command for a deregister request containing an empty KeyID.</p>
+<h2 id="FIDO-Client-Trust-Model"><a href="#FIDO-Client-Trust-Model" class="headerlink" title="FIDO Client Trust Model"></a>FIDO Client Trust Model</h2><p>The FIDO environment on a FIDO User Device comprises 4 entities:</p>
+<ul>
+<li>User Agents (a native app or a browser)</li>
+<li>FIDO UAF Clients (a shared service potentially used by multiple User Agents)</li>
+<li>Authenticator Specific Modules (ASMs)</li>
+<li>Authenticators</li>
+</ul>
+<p>The security and privacy principles that underpin mobile operating systems require certain behaviours from apps. FIDO must uphold those principles wherever possible. This means that each of these components has to enforce specific trust relationships with the others to avoid the risk of rogue components subverting the integrity of the solution.</p>
+<p>One specific requirement on handsets is that apps originating from different vendors must not be allowed directly to view or edit each other’s data (e.g. FIDO UAF credentials).</p>
+<p>Given that FIDO UAF Clients are intended to provide a shared service, the principle of siloed app data has been applied to the FIDO UAF Client, rather than individual apps. This means that if two or more FIDO UAF Clients are present on a device, then each FIDO UAF Client is unable to access authentication keys created by another FIDO UAF Client. A given FIDO UAF Client may however provide services to multiple User Agents, so that the same authentication key can authenticate to different facets of the same Relying Party, even if one facet is a 3rd party browser.</p>
+<p>This exclusive access restriction is enforced through the <strong>KHAccessToken</strong>. When a FIDO UAF Client communicates with an ASM, the ASM reads the identity of the FIDO UAF Client caller1 and includes that Client ID in the KHAccessToken that it sends to the authenticator. Subsequent calls to the authenticator must include the same Client ID in the KHAccessToken. Each authentication key is also bound to the ASM that created it, by means of an ASMToken (a random unique ID for the ASM) that is also included in the KHAccessToken.</p>
+<p>Finally, the User Agents that a FIDO UAF Client will recognise are determined by the Relying Party itself. The FIDO UAF Client requests a list of Trusted Apps from the RP as part of the Registration and Authentication protocols. This prevents User Agents that have not been explicitly authorized by the Relying Party from using the FIDO credentials.</p>
+<p>In this manner, in a compliant FIDO installation, UAF credentials can only be accessed via apps that the relying party explicitly trusts and through the same client and ASM that performed the original registration.</p>
+<p>It should be noted that the specification allows for FIDO UAF Clients to be built directly into User Agents. However, such implementations will restrict the ability to support multiple facets for relying party applications unless they also expose the UAF Client API for other User Agents to consume.</p>
+<h3 id="Isolation-using-KHAccessToken"><a href="#Isolation-using-KHAccessToken" class="headerlink" title="Isolation using KHAccessToken"></a><a href="https://fidoalliance.org/specs/fido-uaf-v1.1-id-20170202/fido-uaf-protocol-v1.1-id-20170202.html#fido-client-trust-model" target="_blank" rel="external">Isolation using KHAccessToken</a></h3><p>Authenticators might be implemented in dedicated hardware and hence might not be able to verify the calling software entity (i.e. the ASM).</p>
+<p>The KHAccessToken allows restricting access to the keys generated by the FIDO Authenticator to the intended ASM. It is based on a Trust On First Use (TOFU) concept.</p>
+<p>FIDO Authenticators are capable of binding UAuth.Key with a key provided by the caller (i.e. the ASM). This key is called KHAccessToken.</p>
+<p>This technique allows making sure that registered keys are only accessible by the caller that originally registered them. A malicious App on a mobile platform won’t be able to access keys by bypassing the related ASM (assuming that this ASM originally registered these keys).</p>
+<p>The KHAccessToken is typically specific to the AppID, PersonaID, ASMToken and the CallerID. See [UAFASM] for more details.</p>
+<blockquote>
+<p>NOTE :<br>On some platforms, the ASM additionally might need special permissions in order to communicate with the FIDO Authenticator. Some platforms do not provide means to reliably enforce access control among applications.</p>
+</blockquote>
+<h2 id="RawKeyHandle"><a href="#RawKeyHandle" class="headerlink" title="RawKeyHandle"></a><a href="https://fidoalliance.org/specs/fido-uaf-v1.1-id-20170202/fido-uaf-authnr-cmds-v1.1-id-20170202.html#rawkeyhandle" target="_blank" rel="external">RawKeyHandle</a></h2><p>RawKeyHandle is a structure generated and parsed by the authenticator. Authenticators may define RawKeyHandle in different ways and the internal structure is relevant only to the specific authenticator implementation.</p>
+<p>RawKeyHandle for a typical first-factor bound authenticator has the following structure.</p>
+<table>
+<thead>
+<tr>
+<th>Depends on hashing algorithm (e.g. 32 bytes)</th>
+<th style="text-align:center">Depends on key type.(e.g. 32 bytes)</th>
+<th style="text-align:center">Username Size(1 byte)</th>
+<th style="text-align:center">Max 128 bytes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>KHAccessToken</strong></td>
+<td style="text-align:center">UAuth.priv</td>
+<td style="text-align:center">Size</td>
+<td style="text-align:center">Username</td>
+</tr>
+</tbody>
+</table>
+<p>First Factor authenticators must store Usernames in the authenticator and they must link the Username to the related key. This may be achieved by storing the Username inside the RawKeyHandle. Second Factor authenticators must not store the Username.</p>
+<p>The ability to support Usernames is a key difference between first-, and second-factor authenticators.</p>
+<p>The RawKeyHandle must be cryptographically wrapped before leaving the authenticator boundary since it typically contains sensitive information, e.g. the user authentication private key (UAuth.priv).</p>
+<h2 id="Register-Command"><a href="#Register-Command" class="headerlink" title="Register Command"></a>Register Command</h2><p>This command generates a UAF registration assertion. This assertion can be used to register the authenticator with a FIDO Server.</p>
+<h3 id="Command-Structure"><a href="#Command-Structure" class="headerlink" title="Command Structure"></a>Command Structure</h3><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">TLV Structure</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">UINT16 Tag</td>
+<td style="text-align:center">TAG_UAFV1_REGISTER_CMD</td>
+</tr>
+<tr>
+<td style="text-align:center">1.1</td>
+<td style="text-align:center">UINT16 Length</td>
+<td style="text-align:center">Command Length</td>
+</tr>
+<tr>
+<td style="text-align:center">1.2</td>
+<td style="text-align:center">UINT16 Tag</td>
+<td style="text-align:center">TAG_AUTHENTICATOR_INDEX</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">1.7</td>
+<td style="text-align:center">UINT16 Tag</td>
+<td style="text-align:center">TAG_KEYHANDLE_ACCESS_TOKEN</td>
+</tr>
+<tr>
+<td style="text-align:center">1.7.1</td>
+<td style="text-align:center">UINT16 Length</td>
+<td style="text-align:center">Length of KHAccessToken</td>
+</tr>
+<tr>
+<td style="text-align:center">1.7.2</td>
+<td style="text-align:center">UINT8[] KHAccessToken</td>
+<td style="text-align:center">KHAccessToken provided by ASM (max 32 bytes)</td>
+</tr>
+<tr>
+<td style="text-align:center">1.8</td>
+<td style="text-align:center">UINT16 Tag</td>
+<td style="text-align:center">TAG_USERVERIFY_TOKEN (optional)</td>
+</tr>
+<tr>
+<td style="text-align:center">1.8.1</td>
+<td style="text-align:center">UINT16 Length</td>
+<td style="text-align:center">Length of VerificationToken</td>
+</tr>
+<tr>
+<td style="text-align:center">1.8.2</td>
+<td style="text-align:center">UINT8[] VerificationToken</td>
+<td style="text-align:center">User verification token</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/security/" rel="tag"># security</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/03/chapter5/" rel="next" title="《Three easy pieces》第五章">
+                <i class="fa fa-chevron-left"></i> 《Three easy pieces》第五章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Duduscript" />
+          <p class="site-author-name" itemprop="name">Duduscript</p>
+           
+              <p class="site-description motion-element" itemprop="description">I can eat glass,it doesn't hurt me.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KHAccessToken"><span class="nav-text">KHAccessToken</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Specification"><span class="nav-text">Specification)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FIDO-Client-Trust-Model"><span class="nav-text">FIDO Client Trust Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Isolation-using-KHAccessToken"><span class="nav-text">Isolation using KHAccessToken</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RawKeyHandle"><span class="nav-text">RawKeyHandle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Register-Command"><span class="nav-text">Register Command</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Command-Structure"><span class="nav-text">Command Structure</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Duduscript</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
